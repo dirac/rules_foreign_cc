@@ -69,8 +69,6 @@ def get_env_vars(
     deps_flags = _define_deps_flags(deps, inputs)
 
     vars["LDFLAGS"] = vars["LDFLAGS"] + deps_flags.libs
-    vars["AR"] = "ar"
-    vars["ARFLAGS"] = ""
 
     # -I flags should be put into preprocessor flags, CPPFLAGS
     # https://www.gnu.org/software/autoconf/manual/autoconf-2.63/html_node/Preset-Output-Variables.html
@@ -152,7 +150,7 @@ def _get_configure_variables(tools, flags, user_env_vars):
     for user_var in user_env_vars:
         toolchain_val = vars.get(user_var)
         if toolchain_val:
-            vars[user_var] = toolchain_val + [user_env_vars[user_var]]
+            vars[user_var] = [user_env_vars[user_var]]
 
     tools_dict = {}
     for tool in _CONFIGURE_TOOLS:
