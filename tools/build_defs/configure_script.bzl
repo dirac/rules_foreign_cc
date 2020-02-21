@@ -69,6 +69,8 @@ def get_env_vars(
     deps_flags = _define_deps_flags(deps, inputs)
 
     vars["LDFLAGS"] = vars["LDFLAGS"] + deps_flags.libs
+    vars["AR"] = "ar"
+    vars["ARFLAGS"] = ""
 
     # -I flags should be put into preprocessor flags, CPPFLAGS
     # https://www.gnu.org/software/autoconf/manual/autoconf-2.63/html_node/Preset-Output-Variables.html
